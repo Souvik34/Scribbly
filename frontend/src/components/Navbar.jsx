@@ -22,9 +22,9 @@ const Navbar = () => {
   }
   return (
     <div className='bg-white flex items-center justify-between px-6 py-2 drop-shadow'>
-      <h2 className='text-xl font-medium text-black py-2'>
+      <h2 className='text-xl font-bold text-black py-2'>
         <span className='text-slate-500'>Scrib</span>
-        <span className='text-orange-600'>ly</span>
+        <span className='text-blue-700'>bly</span>
       </h2>
     <SearchBar 
     value={searchQuery}
