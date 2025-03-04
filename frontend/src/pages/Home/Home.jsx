@@ -2,7 +2,8 @@
 import React, {useState} from 'react'
 import Note from '../../components/Cards/Note'
 import { MdAdd } from 'react-icons/md'
-import { data } from 'react-router-dom'
+import Modal from 'react-modal'
+import AddEditNotes from './AddEditNotes'
 
 const Home = () => {
   const [openAddEditModal, setOpenAddEditModal] = useState({
@@ -110,7 +111,23 @@ const Home = () => {
 
     <button className='w-16 h-16 flex items-center justify-center rounded-2xl bg-primary hover:bg-blue-900 absolute right-10 bottom-10' onClick={()=> 
       setOpenAddEditModal({isShown: true, data: null, type: "add"})}> 
-      <MdAdd className='text-[32px] text-white'/></button>
+      <MdAdd className='text-[32px] text-white'/>
+      </button>
+      
+      <Modal 
+      isOpen={openAddEditModal.isShown} 
+      onRequestClose={()=> {}} 
+      
+      style={{
+        overlay: {
+          backgroundColor: 'rgba(0,0,0,0.2)',
+        },
+      }}
+      contentLabel=''
+      className='w-[40%] max-md:w-[60%] max-sm:w-[70%] max-h-3/4 bg-white rounded-md mx-auto mt-14 p-5 overflow-scroll'
+      >
+        <AddEditNotes/>
+      </Modal>
     </>
   )
 }
