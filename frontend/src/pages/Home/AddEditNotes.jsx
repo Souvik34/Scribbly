@@ -1,7 +1,8 @@
 import React,{useState} from 'react'
 import { MdClose } from 'react-icons/md'
+import TagInput from '../../components/Input/TagInput'
 
-const AddEditNotes = ({onClose}) => {
+const AddEditNotes = ({onClose, noteData, type}) => {
     const  [title, setTitle] = useState('')
     const [content, setContent] = useState('')
     const [tags, setTags] = useState([])
@@ -63,10 +64,13 @@ const AddEditNotes = ({onClose}) => {
 
         </div>
         <div className='mt-3'>
-            <label className='input-label text-red-400 uppercase'>
+            <label className='input-label text-red-400 uppercase'> Tags
             </label>
-                {/* <TagInput/> */}
+                <TagInput tags={tags} setTags={setTags}/>
         </div>
+        
+        {error && <p className='text-red-500 text-xs pt-4'>{error}</p>}
+
         <button className='btn-primary font-medium mt-5 p-3' onClick={handleAddNote}>Add</button>
    </div>
   )
