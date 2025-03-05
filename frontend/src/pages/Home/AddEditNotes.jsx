@@ -58,9 +58,8 @@ const AddEditNotes = ({onClose, noteData, type}) => {
         rows={10}
         value={content}
         onChange={({target})=> setContent(target.value)} 
-        >
-            {" "}
-        </textarea>
+        />
+        
 
         </div>
         <div className='mt-3'>
