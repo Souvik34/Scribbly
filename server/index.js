@@ -14,7 +14,7 @@ mongoose.connect(process.env.MONGODB_URI).then(() => {
 const app = express();
 
 app.use(express.json())
-app.use(cookieParser)
+app.use(cookieParser())
 app.use(cors({origin:"*"}))
 
 app.listen(3000, () => {
@@ -26,6 +26,9 @@ app.listen(3000, () => {
 import authRouter from './routes/auth.route.js'
 app.use("/api/auth", authRouter)
 
+
+import noteRouter from'./routes/note.route.js'
+app.use("/api/note", noteRouter)
 
 //error handling
 app.use((err, req, res, next) =>
@@ -40,3 +43,5 @@ app.use((err, req, res, next) =>
     })
 
 })
+
+
