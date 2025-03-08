@@ -84,3 +84,45 @@ export const editNote = async(req, res, next)=>{
         next (error)
     }
 }
+
+export const getAllNotes = async (req, res, next) => {
+    const userId = req.user.id
+    
+    try {
+        
+        const notes = await Note.find({userId:userId}).sort({isPinned:-1})
+
+        res.status(200).json({
+            success:true,
+            message:"All notes retrived successfully",
+            notes,
+        })
+    } catch (error) {
+        next (error)
+    }
+}
+
+export const deleteNote = async (req, res, next) =>{
+    const noteId = req.params.noteId
+
+    const note = await Note.findOne({_id:noteId, userId:req.user.id})
+
+    if(!note)
+    {
+        return next(errorHandler(404,"Note not found"))
+    
+    }
+
+    try {
+        await Note.deleteOne({_id: noteId, userId: req.user.id})
+      
+        res.status(200).json({
+            success:true,
+            message:"Note deleted successfully",
+            
+        })
+        
+    } catch (error) {
+        next (error)
+    }
+}
