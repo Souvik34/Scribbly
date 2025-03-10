@@ -4,16 +4,16 @@
 import React from 'react'
 import { getInitials } from '../../utils/helper'
 
-const Profile = ({onLogout}) => {
+const Profile = ({onLogout, userInfo}) => {
   return (
     <div className='flex items-center gap-4'>
         <div className='w-12 h-12 flex items-center justify-center rounded-full text-slate-950 font-medium bg-slate-100'>
-            {getInitials("Souvik Sural")}
+            {getInitials(userInfo?.username)}
         </div>
 
 
         <div>
-        <p className='text-sm font-medium'>Souvik</p>
+        <p className='text-sm font-medium'>{userInfo?.username}</p>
         </div>
 
         <button className='text-sm bg-red-500 rounded-md p-1 text-white hover:opacity-80' onClick={onLogout}> Logout </button>

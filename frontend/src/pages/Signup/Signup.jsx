@@ -3,11 +3,13 @@ import React, {useState} from 'react'
 import Password from '../../components/Input/Password'
 import { Link } from 'react-router-dom'
 import { validateEmail } from '../../utils/helper'
+import Navbar from '../../components/Navbar'
 
 
 
 
 const Signup = () => {
+
   const[name, setName] = useState('')
    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -47,6 +49,8 @@ const Signup = () => {
 
   }
   return (
+    <>
+    {/* <Navbar userInfo={userInfo}/> */}
     <div className='flex items-center justify-center mt-28'>
     <div className='w-96 border-rounded bg-white px-7 py-10'>
       <form onSubmit={handleSignup}>
@@ -82,6 +86,7 @@ const Signup = () => {
       </form>
     </div>
   </div>
+    </>
   )
 }
 

@@ -3,13 +3,18 @@ import React, { useState } from 'react'
 import SearchBar from './SearchBar/SearchBar'
 import Profile from './Cards/Profile'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { signoutFailure, signoutStart, signoutSuccess } from '../pages/redux/user/userSlice'
+import axios from 'axios'
 
 
-const Navbar = () => {
+const Navbar = ({userInfo}) => {
   const [searchQuery, setSearchQuery]= useState("")
 
   const navigate = useNavigate()
+  const dispatch = useDispatch
 
   const handleSearch = () => {}
 
@@ -17,9 +22,29 @@ const Navbar = () => {
     setSearchQuery("")
   }
 
-  const onLogout = () =>
+  const onLogout =  async() =>
   {
+    
+    try
+    {
+      dispatch(signoutStart())
+
+      const res = await axios.get("http://localhost:3000/api/auth/signout", 
+        {withCredentials: true,}
+      )
+    
+    if(res.data.succes ===false)
+    {
+      dispatch(signoutFailure(res.data.message))
+    }
+
+    dispatch(signoutSuccess())
     navigate("/login")
+  }
+    catch(error)
+    {
+      dispatch(signoutFailure(error.message))
+    }
   }
   return (
     <div className='bg-white flex items-center justify-between px-6 py-2 drop-shadow'>
@@ -37,10 +62,11 @@ const Navbar = () => {
     onClearSearch={onClearSearch}
     
     />
-    <Profile onLogout={onLogout}/>
+    <Profile userInfo={userInfo} onLogout={onLogout}/>
 
     </div>
   )
 }
+
 
 export default Navbar
