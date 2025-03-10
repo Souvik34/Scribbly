@@ -20,15 +20,16 @@ const Home = () => {
     data: null,
     type:"add"
   })
-  useEffect (()=>{
-    if(currentUser === null)
-    {
-      navigate("/login")
+  useEffect(() => {
+    if (!currentUser) {
+      navigate("/login");
+    } else {
+      console.log("User Info:", currentUser); // Debugging
+      setUserInfo(currentUser);
     }
-    else{
-      setUserInfo(currentUser?.rest)
-    }
-  }, [])
+  }, [currentUser, navigate]);
+  
+  
 
   return (
     <>

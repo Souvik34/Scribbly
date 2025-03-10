@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
 import React, {useState} from 'react'
 import Password from '../../components/Input/Password'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { validateEmail } from '../../utils/helper'
 import Navbar from '../../components/Navbar'
-
+import axios from 'axios'
 
 
 
@@ -14,6 +14,8 @@ const Signup = () => {
    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
+
+    const navigate = useNavigate()
   const handleSignup = async(e)=>{
     e.preventDefault()
     if(!validateEmail(email))
@@ -47,6 +49,24 @@ const Signup = () => {
     //   navigate('/');
     // });
 
+
+    try {
+      const res = await axios.post("http://localhost:3000/api/auth/signup", 
+        {name: name, email, password},
+         {withCredentials: true}
+      )
+      if(res.data.success === false)
+      {
+        setError(res.data.message)
+        return
+      }
+      setError("")
+      navigate("/login")
+
+    } catch (error) {
+      console.log(error.message)
+      setError(error.message)
+    }
   }
   return (
     <>

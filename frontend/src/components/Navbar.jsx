@@ -14,7 +14,7 @@ const Navbar = ({userInfo}) => {
   const [searchQuery, setSearchQuery]= useState("")
 
   const navigate = useNavigate()
-  const dispatch = useDispatch
+  const dispatch = useDispatch()
 
   const handleSearch = () => {}
 
@@ -33,10 +33,11 @@ const Navbar = ({userInfo}) => {
         {withCredentials: true,}
       )
     
-    if(res.data.succes ===false)
-    {
-      dispatch(signoutFailure(res.data.message))
-    }
+      if (!res.data || res.data.success === false) {
+        dispatch(signoutFailure(res.data?.message || "Signout failed"));
+        return;
+      }
+      
 
     dispatch(signoutSuccess())
     navigate("/login")
