@@ -64,7 +64,7 @@ const Login = () => {
     <div className="flex items-center justify-center mt-28">
       <div className="w-96 border rounded bg-white px-7 py-10">
         <form onSubmit={handleLogin}>
-          <h4 className="text-3xl mb-7 flex justify-center">Login</h4>
+          <h4 className="text-3xl mb-7 flex justify-center">Login to Scribbly</h4>
 
           <input
             type="text"
@@ -79,7 +79,7 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          {error && <p className="text-red-500 text-sm pb-1">{error}</p>}
+          {error && <p className="text-red-500 text-sm font-extrabold pb-1">{error}</p>}
 
           <button type="submit" className="btn-primary">
             Login
