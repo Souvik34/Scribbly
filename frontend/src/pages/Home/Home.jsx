@@ -10,6 +10,7 @@ import Navbar from "../../components/Navbar"
 import axios from "axios"
 import { toast } from "react-toastify"
 import EmptyCard from "../../components/EmptyCard/EmptyCard"
+import img from "../../assets/img.png"
 
 const Home = () => {
   const { currentUser, loading, errorDispatch } = useSelector(
@@ -170,12 +171,12 @@ const Home = () => {
             imgSrc={
               isSearch
                 ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtakcQoMFXwFwnlochk9fQSBkNYkO5rSyY9A&s"
-                : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDCtZLuixBFGTqGKdWGLaSKiO3qyhW782aZA&s"
+                : img
             }
             message={
               isSearch
                 ? "Oops! No Notes found matching your search"
-                : `Ready to capture your ideas? Click the 'Add' button to start noting down your thoughts, inspiration and reminders. Let's get started!`
+                : `Click the 'Add' button to start noting down your thoughts!`
             }
           />
         )}
