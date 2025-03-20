@@ -63,7 +63,7 @@ Scribbly is a 📝 web application for managing notes. It allows users to create
     cd frontend
     npm run dev
    ```
-4. Open your browser and navigate to ```http://localhost:5173```
+3. Open your browser and navigate to ```http://localhost:5173```
 
 ## 🔑 API Routes  
 
